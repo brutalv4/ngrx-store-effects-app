@@ -98,7 +98,7 @@ module.exports = {
       app.use('/api', jsonServer.router('db.json'));
     },
   },
-  devtool: 'sourcemap',
+  devtool: 'source-map',
   entry: {
     app: ['zone.js/dist/zone', './src/main.ts'],
   },
