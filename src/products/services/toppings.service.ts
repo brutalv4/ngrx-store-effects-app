@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import { catchError } from 'rxjs/operators';
 import 'rxjs/add/observable/throw';
 
-import { Topping } from '../models/topping.model';
+import { Topping } from 'models';
 
 @Injectable()
 export class ToppingsService {

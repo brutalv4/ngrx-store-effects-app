@@ -17,6 +17,9 @@
     "rootDir": ".",
     "sourceMap": true,
     "skipLibCheck": true,
-    "target": "es5"
+    "target": "es5",
+    "paths": {
+      "models": ["src/products/models"]
+    }
   }
 }

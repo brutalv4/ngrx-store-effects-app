@@ -1,17 +1,17 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { Pizza } from '../../models/pizza.model';
+import { Pizza } from 'models';
 import { PizzasService } from '../../services/pizzas.service';
 
-import { Topping } from '../../models/topping.model';
+import { Topping } from 'models';
 import { ToppingsService } from '../../services/toppings.service';
 
 @Component({
   selector: 'product-item',
   styleUrls: ['product-item.component.scss'],
   template: `
-    <div 
+    <div
       class="product-item">
       <pizza-form
         [pizza]="pizza"

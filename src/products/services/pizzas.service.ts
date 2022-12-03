@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import { catchError } from 'rxjs/operators';
 import 'rxjs/add/observable/throw';
 
-import { Pizza } from '../models/pizza.model';
+import { Pizza } from 'models';
 
 @Injectable()
 export class PizzasService {
