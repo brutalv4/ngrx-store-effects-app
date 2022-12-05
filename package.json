@@ -42,6 +42,7 @@
     "raw-loader": "0.5.1",
     "rimraf": "2.6.2",
     "sass-loader": "6.0.6",
+    "tsconfig-paths-webpack-plugin": "^4.0.0",
     "typescript": "2.6.1",
     "webpack": "3.6.0",
     "webpack-dev-server": "2.8.2"

@@ -7,7 +7,7 @@ import { RouterModule, Routes } from '@angular/router';
 // store
 import { StoreModule } from '@ngrx/store';
 
-import { reducers } from './store/reducers';
+import { reducers } from 'store';
 
 // components
 import * as fromComponents from './components';

@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const typescript = require('typescript');
 const { AotPlugin } = require('@ngtools/webpack');
 const jsonServer = require('json-server');
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
 const rules = [
   { test: /\.html$/, loader: 'html-loader' },
@@ -121,6 +122,9 @@ module.exports = {
   resolve: {
     extensions: ['.ts', '.js'],
     modules: ['src', 'node_modules'],
+    plugins: [
+      new TsconfigPathsPlugin({}),
+    ]
   },
   plugins,
 };
