@@ -21,7 +21,8 @@
     "paths": {
       "models": ["src/products/models"],
       "store": ["src/products/store"],
-      "store/*": ["src/products/store/*"]
+      "services": ["src/products/services"],
+      "utils": ["src/utils"]
     }
   }
 }
