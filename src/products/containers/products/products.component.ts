@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 
 import * as fromStore from 'store';
 
-import { Pizza } from 'models';
+import { Entities, Pizza } from 'models';
 
 @Component({
   selector: 'products',
@@ -25,7 +25,9 @@ import { Pizza } from 'models';
   `,
 })
 export class ProductsComponent implements OnInit {
-  pizzas$: Observable<Pizza[]> = this.store.select(fromStore.getAllPizzas);
+  pizzas$: Observable<Entities<Pizza>> = this.store.select(
+    fromStore.getAllPizzas
+  );
 
   constructor(private store: Store<fromStore.ProductsState>) {}
 
