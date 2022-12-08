@@ -1,11 +1,11 @@
 import {
-  Component,
-  Input,
-  forwardRef,
   ChangeDetectionStrategy,
+  Component,
+  forwardRef,
+  Input,
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { Topping } from 'models';
+import { Topping } from '@products/models';
 
 const PIZZA_TOPPINGS_ACCESSOR = {
   provide: NG_VALUE_ACCESSOR,
@@ -22,10 +22,11 @@ const PIZZA_TOPPINGS_ACCESSOR = {
     <div class="pizza-toppings">
       <div
         class="pizza-toppings-item"
-        *ngFor="let topping of toppings;"
+        *ngFor="let topping of toppings"
         (click)="selectTopping(topping)"
-        [class.active]="existsInToppings(topping)">
-        <img src="/assets/img/toppings/singles/{{ topping.name }}.svg">
+        [class.active]="existsInToppings(topping)"
+      >
+        <img src="/assets/img/toppings/singles/{{ topping.name }}.svg" />
         {{ topping.name }}
       </div>
     </div>
@@ -53,7 +54,7 @@ export class PizzaToppingsComponent implements ControlValueAccessor {
 
   selectTopping(topping: Topping) {
     if (this.existsInToppings(topping)) {
-      this.value = this.value.filter(item => item.id !== topping.id);
+      this.value = this.value.filter((item) => item.id !== topping.id);
     } else {
       this.value = [...this.value, topping];
     }
@@ -62,6 +63,6 @@ export class PizzaToppingsComponent implements ControlValueAccessor {
   }
 
   existsInToppings(topping: Topping) {
-    return this.value.some(val => val.id === topping.id);
+    return this.value.some((val) => val.id === topping.id);
   }
 }

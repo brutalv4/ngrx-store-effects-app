@@ -4,8 +4,8 @@ import { Injectable } from '@angular/core';
 import 'rxjs/add/observable/throw';
 import { Observable } from 'rxjs/Observable';
 
-import { Topping } from 'models';
-import { CatchAndThrowError } from 'utils';
+import { Topping } from '@products/models';
+import { CatchAndThrowError } from '@utils';
 
 @Injectable()
 export class ToppingsService {

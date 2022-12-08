@@ -1,4 +1,4 @@
-import { Entities, Pizza } from 'models';
+import { Entities, Pizza } from '@products/models';
 
 import * as fromPizzasAction from '../actions/pizzas.action';
 

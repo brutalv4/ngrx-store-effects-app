@@ -4,8 +4,8 @@ import { Injectable } from '@angular/core';
 import 'rxjs/add/observable/throw';
 import { Observable } from 'rxjs/Observable';
 
-import { Pizza } from 'models';
-import { CatchAndThrowError } from 'utils';
+import { Pizza } from '@products/models';
+import { CatchAndThrowError } from '@utils';
 
 @Injectable()
 export class PizzasService {

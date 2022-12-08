@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import * as fromStore from 'store';
+import * as fromProductsStore from '@products/store';
 
-import { Entities, Pizza } from 'models';
+import { Entities, Pizza } from '@products/models';
 
 @Component({
   selector: 'products',
@@ -26,12 +26,12 @@ import { Entities, Pizza } from 'models';
 })
 export class ProductsComponent implements OnInit {
   pizzas$: Observable<Entities<Pizza>> = this.store.select(
-    fromStore.getAllPizzas
+    fromProductsStore.getAllPizzas
   );
 
-  constructor(private store: Store<fromStore.ProductsState>) {}
+  constructor(private store: Store<fromProductsStore.ProductsState>) {}
 
   ngOnInit(): void {
-    this.store.dispatch(new fromStore.LoadPizzas());
+    this.store.dispatch(new fromProductsStore.LoadPizzas());
   }
 }

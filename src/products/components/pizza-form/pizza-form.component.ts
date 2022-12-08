@@ -1,24 +1,21 @@
 import {
   Component,
-  Input,
-  Output,
   EventEmitter,
+  Input,
   OnChanges,
+  Output,
   SimpleChanges,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
+  FormBuilder,
   FormControl,
   FormGroup,
-  FormArray,
-  FormBuilder,
   Validators,
 } from '@angular/forms';
 
 import { map } from 'rxjs/operators';
 
-import { Pizza } from 'models';
-import { Topping } from 'models';
+import { Pizza, Topping } from '@products/models';
 
 @Component({
   selector: 'pizza-form',
@@ -26,7 +23,6 @@ import { Topping } from 'models';
   template: `
     <div class="pizza-form">
       <form [formGroup]="form">
-
         <label>
           <h4>Pizza name</h4>
           <input
@@ -34,10 +30,9 @@ import { Topping } from 'models';
             formControlName="name"
             placeholder="e.g. Pepperoni"
             class="pizza-form__input"
-            [class.error]="nameControlInvalid">
-          <div
-            class="pizza-form__error"
-            *ngIf="nameControlInvalid">
+            [class.error]="nameControlInvalid"
+          />
+          <div class="pizza-form__error" *ngIf="nameControlInvalid">
             <p>Pizza must have a name</p>
           </div>
         </label>
@@ -48,12 +43,8 @@ import { Topping } from 'models';
           <h4>Select toppings</h4>
         </label>
         <div class="pizza-form__list">
-
-          <pizza-toppings
-            [toppings]="toppings"
-            formControlName="toppings">
+          <pizza-toppings [toppings]="toppings" formControlName="toppings">
           </pizza-toppings>
-
         </div>
 
         <div class="pizza-form__actions">
@@ -61,7 +52,8 @@ import { Topping } from 'models';
             type="button"
             class="btn btn__ok"
             *ngIf="!exists"
-            (click)="createPizza(form)">
+            (click)="createPizza(form)"
+          >
             Create Pizza
           </button>
 
@@ -69,7 +61,8 @@ import { Topping } from 'models';
             type="button"
             class="btn btn__ok"
             *ngIf="exists"
-            (click)="updatePizza(form)">
+            (click)="updatePizza(form)"
+          >
             Save changes
           </button>
 
@@ -77,11 +70,11 @@ import { Topping } from 'models';
             type="button"
             class="btn btn__warning"
             *ngIf="exists"
-            (click)="removePizza(form)">
+            (click)="removePizza(form)"
+          >
             Delete Pizza
           </button>
         </div>
-
       </form>
     </div>
   `,
@@ -120,9 +113,9 @@ export class PizzaFormComponent implements OnChanges {
     this.form
       .get('toppings')
       .valueChanges.pipe(
-        map(toppings => toppings.map((topping: Topping) => topping.id))
+        map((toppings) => toppings.map((topping: Topping) => topping.id))
       )
-      .subscribe(value => this.selected.emit(value));
+      .subscribe((value) => this.selected.emit(value));
   }
 
   createPizza(form: FormGroup) {

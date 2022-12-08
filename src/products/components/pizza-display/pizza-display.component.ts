@@ -1,7 +1,7 @@
 import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { transition, style, animate, trigger } from '@angular/animations';
 
-import { Pizza } from 'models';
+import { Pizza } from '@products/models';
 
 export const DROP_ANIMATION = trigger('drop', [
   transition(':enter', [
@@ -28,13 +28,14 @@ export const DROP_ANIMATION = trigger('drop', [
   template: `
     <div class="pizza-display">
       <div class="pizza-display__base">
-        <img src="/assets/img/pizza.svg">
+        <img src="/assets/img/pizza.svg" />
         <img
-          *ngFor="let topping of pizza?.toppings; index as i;"
+          *ngFor="let topping of pizza?.toppings; index as i"
           src="/assets/img/toppings/{{ topping.name }}.svg"
           [style.zIndex]="i"
           class="pizza-display__topping"
-          @drop>
+          @drop
+        />
       </div>
     </div>
   `,

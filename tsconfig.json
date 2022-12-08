@@ -19,10 +19,9 @@
     "skipLibCheck": true,
     "target": "es5",
     "paths": {
-      "models": ["src/products/models"],
-      "store": ["src/products/store"],
-      "services": ["src/products/services"],
-      "utils": ["src/utils"]
+      "@app/*": ["src/app/*"],
+      "@products/*": ["src/products/*"],
+      "@utils": ["src/utils"]
     }
   }
 }

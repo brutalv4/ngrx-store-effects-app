@@ -7,7 +7,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 
 // store
-import { effects, reducers } from 'store';
+import { effects, reducers } from './store';
 
 // components
 import * as fromComponents from './components';
