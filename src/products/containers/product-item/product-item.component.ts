@@ -1,11 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Pizza, Topping } from '@products/models';
 
-import { Pizza } from '@products/models';
-import { PizzasService } from '../../services/pizzas.service';
-
-import { Topping } from '@products/models';
-import { ToppingsService } from '../../services/toppings.service';
+import * as fromStore from '@products/store';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'product-item',
@@ -13,7 +11,7 @@ import { ToppingsService } from '../../services/toppings.service';
   template: `
     <div class="product-item">
       <pizza-form
-        [pizza]="pizza"
+        [pizza]="pizza$ | async"
         [toppings]="toppings"
         (selected)="onSelect($event)"
         (create)="onCreate($event)"
@@ -25,65 +23,26 @@ import { ToppingsService } from '../../services/toppings.service';
     </div>
   `,
 })
-export class ProductItemComponent implements OnInit {
-  pizza: Pizza;
+export class ProductItemComponent {
+  pizza$: Observable<Pizza> = this.store.select(fromStore.getSelectedPizza);
   visualise: Pizza;
   toppings: Topping[];
 
-  constructor(
-    private pizzaService: PizzasService,
-    private toppingsService: ToppingsService,
-    private route: ActivatedRoute,
-    private router: Router
-  ) {}
-
-  ngOnInit() {
-    this.pizzaService.getPizzas().subscribe((pizzas) => {
-      const param = this.route.snapshot.params.id;
-      let pizza;
-      if (param === 'new') {
-        pizza = {};
-      } else {
-        pizza = pizzas.find((pizza) => pizza.id == parseInt(param, 10));
-      }
-      this.pizza = pizza;
-      this.toppingsService.getToppings().subscribe((toppings) => {
-        this.toppings = toppings;
-        this.onSelect(toppings.map((topping) => topping.id));
-      });
-    });
-  }
+  constructor(private store: Store<fromStore.ProductsState>) {}
 
   onSelect(event: number[]) {
-    let toppings;
-    if (this.toppings && this.toppings.length) {
-      toppings = event.map((id) =>
-        this.toppings.find((topping) => topping.id === id)
-      );
-    } else {
-      toppings = this.pizza.toppings;
-    }
-    this.visualise = { ...this.pizza, toppings };
+    throw new Error('Not yet implemented');
   }
 
   onCreate(event: Pizza) {
-    this.pizzaService.createPizza(event).subscribe((pizza) => {
-      this.router.navigate([`/products/${pizza.id}`]);
-    });
+    throw new Error('Not yet implemented');
   }
 
   onUpdate(event: Pizza) {
-    this.pizzaService.updatePizza(event).subscribe(() => {
-      this.router.navigate([`/products`]);
-    });
+    throw new Error('Not yet implemented');
   }
 
   onRemove(event: Pizza) {
-    const remove = window.confirm('Are you sure?');
-    if (remove) {
-      this.pizzaService.removePizza(event).subscribe(() => {
-        this.router.navigate([`/products`]);
-      });
-    }
+    throw new Error('Not yet implemented');
   }
 }
