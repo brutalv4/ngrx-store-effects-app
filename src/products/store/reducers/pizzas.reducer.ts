@@ -1,4 +1,5 @@
 import { Entities, Pizza } from '@products/models';
+import { reduceItemsToEntities } from '@utils';
 
 import * as fromPizzasAction from '../actions/pizzas.action';
 
@@ -28,16 +29,7 @@ export function reducer(
 
     case fromPizzasAction.LOAD_PIZZAS_SUCCESS: {
       const pizzas: Pizza[] = action.payload;
-
-      const entities: Entities<Pizza> = pizzas.reduce(
-        (entities: Entities<Pizza>, pizza: Pizza) => ({
-          ...entities,
-          [pizza.id]: pizza,
-        }),
-        {
-          ...state.entities,
-        }
-      );
+      const entities = reduceItemsToEntities(pizzas, { ...state.entities });
 
       return {
         ...state,
@@ -62,5 +54,5 @@ export function reducer(
 
 // selectors
 export const getPizzasEntities = (state: PizzaState) => state.entities;
-export const getPizzasLoading = (state: PizzaState) => state.loading;
 export const getPizzasLoaded = (state: PizzaState) => state.loaded;
+export const getPizzasLoading = (state: PizzaState) => state.loading;

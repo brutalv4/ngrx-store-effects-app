@@ -1,1 +1,3 @@
-export type Entities<T> = { [id: number]: T };
+import { Item } from './item.model';
+
+export type Entities<T extends Item> = { [id: number]: T };

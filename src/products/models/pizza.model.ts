@@ -1,7 +1,7 @@
+import { Item } from './item.model';
 import { Topping } from './topping.model';
 
-export interface Pizza {
-  id?: number;
+export interface Pizza extends Item {
   name?: string;
   toppings?: Topping[];
 }
