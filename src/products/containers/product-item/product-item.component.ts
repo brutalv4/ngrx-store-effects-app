@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Pizza, Topping } from '@products/models';
 
@@ -23,12 +23,16 @@ import { Observable } from 'rxjs';
     </div>
   `,
 })
-export class ProductItemComponent {
+export class ProductItemComponent implements OnInit {
   pizza$: Observable<Pizza> = this.store.select(fromStore.getSelectedPizza);
-  visualise: Pizza;
   toppings: Topping[];
+  visualise: Pizza;
 
   constructor(private store: Store<fromStore.ProductsState>) {}
+
+  ngOnInit(): void {
+    this.store.dispatch(new fromStore.LoadToppings());
+  }
 
   onSelect(event: number[]) {
     throw new Error('Not yet implemented');
