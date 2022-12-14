@@ -12,7 +12,7 @@ import { Observable } from 'rxjs';
     <div class="product-item">
       <pizza-form
         [pizza]="pizza$ | async"
-        [toppings]="toppings"
+        [toppings]="toppings$ | async"
         (selected)="onSelect($event)"
         (create)="onCreate($event)"
         (update)="onUpdate($event)"
@@ -25,7 +25,10 @@ import { Observable } from 'rxjs';
 })
 export class ProductItemComponent implements OnInit {
   pizza$: Observable<Pizza> = this.store.select(fromStore.getSelectedPizza);
-  toppings: Topping[];
+  toppings$: Observable<Topping[]> = this.store.select(
+    fromStore.getAllToppings
+  );
+
   visualise: Pizza;
 
   constructor(private store: Store<fromStore.ProductsState>) {}
@@ -34,19 +37,11 @@ export class ProductItemComponent implements OnInit {
     this.store.dispatch(new fromStore.LoadToppings());
   }
 
-  onSelect(event: number[]) {
-    throw new Error('Not yet implemented');
-  }
+  onSelect(event: number[]) {}
 
-  onCreate(event: Pizza) {
-    throw new Error('Not yet implemented');
-  }
+  onCreate(event: Pizza) {}
 
-  onUpdate(event: Pizza) {
-    throw new Error('Not yet implemented');
-  }
+  onUpdate(event: Pizza) {}
 
-  onRemove(event: Pizza) {
-    throw new Error('Not yet implemented');
-  }
+  onRemove(event: Pizza) {}
 }
