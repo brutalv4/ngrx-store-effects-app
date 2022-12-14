@@ -5,28 +5,28 @@ import 'rxjs/add/observable/throw';
 import { Observable } from 'rxjs/Observable';
 
 import { Pizza } from '@products/models';
-import { CatchAndThrowError } from '@utils';
+import { CatchAndRethrow } from '@utils';
 
 @Injectable()
 export class PizzasService {
   constructor(private http: HttpClient) {}
 
-  @CatchAndThrowError()
+  @CatchAndRethrow()
   getPizzas(): Observable<Pizza[]> {
     return this.http.get<Pizza[]>(`/api/pizzas`);
   }
 
-  @CatchAndThrowError()
+  @CatchAndRethrow()
   createPizza(payload: Pizza): Observable<Pizza> {
     return this.http.post<Pizza>(`/api/pizzas`, payload);
   }
 
-  @CatchAndThrowError()
+  @CatchAndRethrow()
   updatePizza(payload: Pizza): Observable<Pizza> {
     return this.http.put<Pizza>(`/api/pizzas/${payload.id}`, payload);
   }
 
-  @CatchAndThrowError()
+  @CatchAndRethrow()
   removePizza(payload: Pizza): Observable<Pizza> {
     return this.http.delete<any>(`/api/pizzas/${payload.id}`);
   }

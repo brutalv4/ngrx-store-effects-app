@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
-export function CatchAndThrowError() {
+export function CatchAndRethrow() {
   return function (
     target: any,
     propertyKey: string,
