@@ -33,5 +33,6 @@ export class ProductsComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.dispatch(new fromProductsStore.LoadPizzas());
+    this.store.dispatch(new fromProductsStore.LoadToppings());
   }
 }
