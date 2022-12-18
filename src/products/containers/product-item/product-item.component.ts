@@ -18,7 +18,7 @@ import { Observable } from 'rxjs';
         (update)="onUpdate($event)"
         (remove)="onRemove($event)"
       >
-        <pizza-display [pizza]="visualise"> </pizza-display>
+        <pizza-display [pizza]="visualize$ | async"> </pizza-display>
       </pizza-form>
     </div>
   `,
@@ -28,8 +28,9 @@ export class ProductItemComponent implements OnInit {
   toppings$: Observable<Topping[]> = this.store.select(
     fromStore.getAllToppings
   );
-
-  visualise: Pizza;
+  visualize$: Observable<Pizza> = this.store.select(
+    fromStore.getPizzaVisualized
+  );
 
   constructor(private store: Store<fromStore.ProductsState>) {}
 
@@ -37,7 +38,9 @@ export class ProductItemComponent implements OnInit {
     this.store.dispatch(new fromStore.LoadToppings());
   }
 
-  onSelect(event: number[]) {}
+  onSelect(selectedToppings: number[]) {
+    this.store.dispatch(new fromStore.VisualizeToppings(selectedToppings));
+  }
 
   onCreate(event: Pizza) {}
 

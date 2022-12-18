@@ -13,13 +13,11 @@ export class LoadPizzas implements Action {
 
 export class LoadPizzasFail implements Action {
   readonly type = LOAD_PIZZAS_FAIL;
-
   constructor(readonly payload: any) {}
 }
 
 export class LoadPizzasSuccess implements Action {
   readonly type = LOAD_PIZZAS_SUCCESS;
-
   constructor(readonly payload: Pizza[]) {}
 }
 
