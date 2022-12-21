@@ -3,5 +3,6 @@
 docker run \
   --rm \
   --name ngrx-store-effects-app \
-  -p 3000:3000 \
+  --env PORT=5000 \
+  -p 8000:5000 \
   ngrx-store-effects-app:latest
