@@ -1,3 +1,6 @@
 #!/usr/bin/env bash
 
-docker build -f Dockerfile -t ngrx-store-effects-app:latest .
+docker build \
+  --file Dockerfile \
+  --tag ngrx-store-effects-app:latest \
+  .
