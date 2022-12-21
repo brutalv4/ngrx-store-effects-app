@@ -47,11 +47,13 @@ export class ProductItemComponent implements OnInit {
     this.toppings$ = this.store.select(fromStore.getAllToppings);
   }
 
-  onSelect(selectedToppings: number[]) {
-    this.store.dispatch(new fromStore.VisualizeToppings(selectedToppings));
+  onSelect(event: number[]) {
+    this.store.dispatch(new fromStore.VisualizeToppings(event));
   }
 
-  onCreate(event: Pizza) {}
+  onCreate(event: Pizza) {
+    this.store.dispatch(new fromStore.CreatePizza(event));
+  }
 
   onUpdate(event: Pizza) {}
 
