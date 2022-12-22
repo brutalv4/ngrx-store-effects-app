@@ -44,4 +44,15 @@ export class PizzasEffects {
       )
     )
   );
+
+  @Effect()
+  removePizza$ = this.actions$.ofType(pizzasActions.REMOVE_PIZZA).pipe(
+    map((action: pizzasActions.RemovePizza) => action.payload),
+    switchMap((pizza) =>
+      this.pizzasService.removePizza(pizza).pipe(
+        map(() => new pizzasActions.RemovePizzaSuccess(pizza)),
+        catchError((error) => of(new pizzasActions.RemovePizzaFail(error)))
+      )
+    )
+  );
 }

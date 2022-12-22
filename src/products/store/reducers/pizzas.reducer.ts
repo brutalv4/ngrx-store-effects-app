@@ -61,6 +61,17 @@ export function reducer(
       };
     }
 
+    case fromPizzasAction.REMOVE_PIZZA_SUCCESS: {
+      // TODO: simply WOW!
+      const { id } = action.payload;
+      const { [id]: removed, ...entities } = state.entities;
+
+      return {
+        ...state,
+        entities,
+      };
+    }
+
     default:
       return state;
   }
