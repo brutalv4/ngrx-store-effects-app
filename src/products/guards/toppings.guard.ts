@@ -10,15 +10,15 @@ import { CheckStoreGuard } from './store.guard';
 import * as fromStore from '@products/store';
 
 @Injectable()
-export class PizzasGuard extends CheckStoreGuard implements CanActivate {
+export class ToppingsGuard extends CheckStoreGuard implements CanActivate {
   constructor(protected store: Store<fromStore.ProductsState>) {
     super(store);
   }
 
   canActivate(): Observable<boolean> {
     return this.checkStore(
-      fromStore.getAllPizzasLoaded,
-      new fromStore.LoadPizzas()
+      fromStore.getAllToppingsLoaded,
+      new fromStore.LoadToppings()
     ).pipe(
       switchMap(() => of(true)),
       catchError(() => of(false))

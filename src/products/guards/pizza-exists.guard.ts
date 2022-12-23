@@ -1,9 +1,5 @@
 import { Injectable } from '@angular/core';
-import {
-  ActivatedRouteSnapshot,
-  CanActivate,
-  RouterStateSnapshot,
-} from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Entities, Pizza } from '@products/models';
 import { Observable } from 'rxjs';
@@ -18,13 +14,11 @@ export class PizzaExistsGuard extends CheckStoreGuard implements CanActivate {
     super(store);
   }
 
-  canActivate(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
-  ): Observable<boolean> {
-    return this.checkStore().pipe(
-      switchMap(() => this.hasPizza(parseInt(route.params.pizzaId)))
-    );
+  canActivate(route: ActivatedRouteSnapshot): Observable<boolean> {
+    return this.checkStore(
+      fromStore.getAllPizzasLoaded,
+      new fromStore.LoadPizzas()
+    ).pipe(switchMap(() => this.hasPizza(parseInt(route.params.pizzaId))));
   }
 
   hasPizza(id: number): Observable<boolean> {
