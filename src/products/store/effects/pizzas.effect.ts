@@ -3,6 +3,7 @@ import { Actions, Effect } from '@ngrx/effects';
 import { of } from 'rxjs/observable/of';
 import { catchError, map, switchMap } from 'rxjs/operators';
 
+import * as fromRoot from '@app/store';
 import * as fromServices from '@products/services';
 import * as pizzasActions from '../actions/pizzas.action';
 
@@ -35,6 +36,14 @@ export class PizzasEffects {
   );
 
   @Effect()
+  createPizzaSuccess$ = this.actions$
+    .ofType(pizzasActions.CREATE_PIZZA_SUCCESS)
+    .pipe(
+      map((action: pizzasActions.CreatePizzaSuccess) => action.payload),
+      map((pizza) => new fromRoot.Go({ path: ['products', pizza.id] }))
+    );
+
+  @Effect()
   updatePizza$ = this.actions$.ofType(pizzasActions.UPDATE_PIZZA).pipe(
     map((action: pizzasActions.UpdatePizza) => action.payload),
     switchMap((pizza) =>
@@ -55,4 +64,12 @@ export class PizzasEffects {
       )
     )
   );
+
+  @Effect()
+  handlePizzaSuccess$ = this.actions$
+    .ofType(
+      pizzasActions.UPDATE_PIZZA_SUCCESS,
+      pizzasActions.REMOVE_PIZZA_SUCCESS
+    )
+    .pipe(map(() => new fromRoot.Go({ path: ['products'] })));
 }
