@@ -4,30 +4,21 @@ import { Observable } from 'rxjs';
 
 import { Store } from '@ngrx/store';
 import { of } from 'rxjs/observable/of';
-import { catchError, filter, switchMap, take, tap } from 'rxjs/operators';
+import { catchError, switchMap } from 'rxjs/operators';
+import { CheckStoreGuard } from './store.guard';
 
 import * as fromStore from '@products/store';
 
 @Injectable()
-export class PizzasGuard implements CanActivate {
-  constructor(private store: Store<fromStore.ProductsState>) {}
+export class PizzasGuard extends CheckStoreGuard implements CanActivate {
+  constructor(protected store: Store<fromStore.ProductsState>) {
+    super(store);
+  }
 
   canActivate(): Observable<boolean> {
     return this.checkStore().pipe(
       switchMap(() => of(true)),
       catchError(() => of(false))
-    );
-  }
-
-  checkStore(): Observable<boolean> {
-    return this.store.select(fromStore.getAllPizzasLoaded).pipe(
-      tap((loaded) => {
-        if (!loaded) {
-          this.store.dispatch(new fromStore.LoadPizzas());
-        }
-      }),
-      filter((loaded) => loaded),
-      take(1)
     );
   }
 }
