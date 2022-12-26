@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { of } from 'rxjs/observable/of';
 import { catchError, switchMap } from 'rxjs/operators';
-import { CheckStoreGuard } from './store.guard';
+import { CheckStoreGuard } from './check-store.guard';
 
 import * as fromStore from '@products/store';
 

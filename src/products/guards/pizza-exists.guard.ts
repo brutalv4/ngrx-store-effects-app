@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { Entities, Pizza } from '@products/models';
 import { Observable } from 'rxjs';
 import { map, switchMap, take } from 'rxjs/operators';
-import { CheckStoreGuard } from './store.guard';
+import { CheckStoreGuard } from './check-store.guard';
 
 import * as fromStore from '@products/store';
 
