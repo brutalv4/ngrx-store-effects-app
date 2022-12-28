@@ -7,7 +7,7 @@ import * as fromFeature from '../reducers';
 import * as fromPizzas from '../reducers/pizzas.reducer';
 import * as fromToppings from './toppings.selectors';
 
-const getPizzaState = createSelector(
+export const getPizzaState = createSelector(
   fromFeature.getProductsState,
   (state: fromFeature.ProductsState) => state.pizzas
 );
